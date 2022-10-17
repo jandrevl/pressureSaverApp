@@ -1,17 +1,18 @@
 package com.jandrevl.pressuresaver;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class PressureMeasurement {
+public class PressureMeasurement implements Serializable {
 
     private LocalDateTime date;
     private double systolic;
-    private double dyastolic;
+    private double diastolic;
     private int pulse;
 
-    public PressureMeasurement(double systolic, double dyastolic, int pulse) {
+    public PressureMeasurement(double systolic, double diastolic, int pulse) {
         this.systolic = systolic;
-        this.dyastolic = dyastolic;
+        this.diastolic = diastolic;
         this.pulse = pulse;
         this.date = LocalDateTime.now();
     }
@@ -32,12 +33,12 @@ public class PressureMeasurement {
         this.systolic = systolic;
     }
 
-    public double getDyastolic() {
-        return dyastolic;
+    public double getDiastolic() {
+        return diastolic;
     }
 
-    public void setDyastolic(double dyastolic) {
-        this.dyastolic = dyastolic;
+    public void setDiastolic(double diastolic) {
+        this.diastolic = diastolic;
     }
 
     public int getPulse() {
