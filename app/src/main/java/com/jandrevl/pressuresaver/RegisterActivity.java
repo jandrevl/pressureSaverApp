@@ -2,18 +2,14 @@ package com.jandrevl.pressuresaver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -23,10 +19,16 @@ public class RegisterActivity extends AppCompatActivity {
     EditText dateEditText;
     EditText timeEditText;
     Button save;
-    LocalDate date = LocalDate.now();
-    LocalTime time = LocalTime.now();
+    LocalDate localDateNow = LocalDate.now();
+    LocalTime localTimeNow = LocalTime.now();
     String dateString;
     String timeString;
+    int systolic;
+    int diastolic;
+    int pulse;
+    String dateTime;
+
+
 
 
     @Override
@@ -36,15 +38,24 @@ public class RegisterActivity extends AppCompatActivity {
 
         dateEditText = findViewById(R.id.dateEditText);
         timeEditText = findViewById(R.id.timeEditText);
-        dateString = date.toString();
-        timeString = time.format(DateTimeFormatter.ofPattern("HH:mm"));
+        dateString = localDateNow.toString();
+        timeString = localTimeNow.format(DateTimeFormatter.ofPattern("HH:mm"));
 
         dateEditText.setText(dateString);
         timeEditText.setText(timeString);
 
+        systolicEditText = findViewById(R.id.systolicEditText);
+        diastolicEditText = findViewById(R.id.diastolicEditText);
+        pulseEditText = findViewById(R.id.pulseEditText);
+
     }
 
     public void saveMeasurement(View view) {
+
+        systolic = Integer.parseInt(systolicEditText.getText().toString());
+        diastolic = Integer.parseInt(diastolicEditText.getText().toString());
+        pulse = Integer.parseInt(pulseEditText.getText().toString());
+
 
 
         finish();
