@@ -2,7 +2,9 @@ package com.jandrevl.pressuresaver;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,7 @@ public class RegisterActivity extends AppCompatActivity {
     int diastolic;
     int pulse;
     String dateTime;
+    SQLiteDatabase myDataBase;
 
 
 
@@ -48,6 +51,9 @@ public class RegisterActivity extends AppCompatActivity {
         diastolicEditText = findViewById(R.id.diastolicEditText);
         pulseEditText = findViewById(R.id.pulseEditText);
 
+        myDataBase = openOrCreateDatabase("pressureSaverDataBase", MODE_PRIVATE, null);
+
+
     }
 
     public void saveMeasurement(View view) {
@@ -55,6 +61,12 @@ public class RegisterActivity extends AppCompatActivity {
         systolic = Integer.parseInt(systolicEditText.getText().toString());
         diastolic = Integer.parseInt(diastolicEditText.getText().toString());
         pulse = Integer.parseInt(pulseEditText.getText().toString());
+        dateTime = dateString + " at " + timeString;
+        String SQLStatement = String.format("INSERT INTO measurements VALUES(%s, %s, %s, '%s');", systolic, diastolic, pulse, dateTime);
+        Log.i("SQL Statement is", SQLStatement);
+        myDataBase.execSQL(SQLStatement);
+
+
 
 
 
