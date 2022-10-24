@@ -30,4 +30,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
         startActivity(intent);
     }
+
+    public void goToPreviousMeasurements(View view) {
+        Intent intent = new Intent(getApplicationContext(), MeasurementsHistoryActivity.class);
+        startActivity(intent);
+    }
 }
