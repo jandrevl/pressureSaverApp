@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -61,24 +62,42 @@ public class RegisterActivity extends AppCompatActivity {
         try {
             systolic = Integer.parseInt(systolicEditText.getText().toString());
         } catch (Exception e) {
-            systolicEditText.setError("Must be a number between 100 and 250");
+            systolicEditText.setError("Must be a positive Integer");
             return;
         }
-        if(systolic < 100 || systolic > 250) {
-            systolicEditText.setError("Must be an Integer between 100 and 250");
+        if(systolic < 40 || systolic > 300) {
+            systolicEditText.setError("Please input a valid value");
             return;
         }
 
-        diastolic = Integer.parseInt(diastolicEditText.getText().toString());
+        try {
+            diastolic = Integer.parseInt(diastolicEditText.getText().toString());
+        } catch (Exception e) {
+            diastolicEditText.setError("Must be a positive Integer");
+            return;
+        }
+        if(diastolic < 40 || diastolic > 300) {
+            diastolicEditText.setError("Please input a valid value");
+            return;
+        }
 
-        pulse = Integer.parseInt(pulseEditText.getText().toString());
+        try {
+            pulse = Integer.parseInt(pulseEditText.getText().toString());
+        } catch (Exception e) {
+            pulseEditText.setError("Must be a positive Integer");
+            return;
+        }
+        if(pulse < 10 || pulse > 500) {
+            pulseEditText.setError("Please input a valid value");
+            return;
+        }
 
         dateTime = dateString + " at " + timeString;
+
         String SQLStatement = String.format("INSERT INTO measurements VALUES(%s, %s, %s, '%s');", systolic, diastolic, pulse, dateTime);
         Log.i("SQL Statement is", SQLStatement);
         myDataBase.execSQL(SQLStatement);
-
-
+        Toast.makeText(this, "Measurement registered successfully", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

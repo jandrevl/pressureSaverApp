@@ -85,6 +85,7 @@
         android:layout_height="50dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
+        android:background="#B60C0C"
         android:text="DATE AND TIME"
         android:textSize="24sp"
         android:textStyle="bold"

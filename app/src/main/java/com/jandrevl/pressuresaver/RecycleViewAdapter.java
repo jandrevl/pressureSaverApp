@@ -1,6 +1,8 @@
 package com.jandrevl.pressuresaver;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,7 +35,38 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.systolic.setText(String.valueOf(measurements.get(position).getSystolic()));
+        if(measurements.get(position).getSystolic() < 120) {
+            holder.systolic.setBackgroundColor(Color.GREEN);
+        } else if(measurements.get(position).getSystolic() >=120 &&
+                measurements.get(position).getSystolic() <= 129) {
+            holder.systolic.setBackgroundColor(Color.YELLOW);
+        } else if(measurements.get(position).getSystolic() > 130 &&
+                measurements.get(position).getSystolic() <= 139) {
+            holder.systolic.setBackgroundColor(Color.rgb(255, 193,7));
+        } else if(measurements.get(position).getSystolic() >= 140 &&
+                measurements.get(position).getSystolic() < 181) {
+            holder.systolic.setBackgroundColor(Color.rgb(255, 87,34));
+            holder.systolic.setTextColor(ColorStateList.valueOf(Color.WHITE));
+        } else {
+            holder.systolic.setBackgroundColor(Color.rgb(168, 13,13));
+            holder.systolic.setTextColor(ColorStateList.valueOf(Color.WHITE));
+        }
+
         holder.diastolic.setText(String.valueOf(measurements.get(position).getDiastolic()));
+        if(measurements.get(position).getDiastolic() < 80) {
+            holder.diastolic.setBackgroundColor(Color.GREEN);
+        }  else if(measurements.get(position).getDiastolic() >= 80 &&
+                measurements.get(position).getDiastolic() <= 89) {
+            holder.diastolic.setBackgroundColor(Color.rgb(255, 193,7));
+        } else if(measurements.get(position).getDiastolic() >= 90 &&
+                measurements.get(position).getDiastolic() < 120) {
+            holder.diastolic.setBackgroundColor(Color.rgb(255, 87,34));
+            holder.diastolic.setTextColor(ColorStateList.valueOf(Color.WHITE));
+        } else {
+            holder.diastolic.setBackgroundColor(Color.rgb(168, 13,13));
+            holder.diastolic.setTextColor(ColorStateList.valueOf(Color.WHITE));
+        }
+
         holder.pulse.setText(String.valueOf(measurements.get(position).getPulse()));
         holder.dateTime.setText(measurements.get(position).getDateTime());
 
