@@ -58,16 +58,25 @@ public class RegisterActivity extends AppCompatActivity {
 
     public void saveMeasurement(View view) {
 
-        systolic = Integer.parseInt(systolicEditText.getText().toString());
+        try {
+            systolic = Integer.parseInt(systolicEditText.getText().toString());
+        } catch (Exception e) {
+            systolicEditText.setError("Must be a number between 100 and 250");
+            return;
+        }
+        if(systolic < 100 || systolic > 250) {
+            systolicEditText.setError("Must be an Integer between 100 and 250");
+            return;
+        }
+
         diastolic = Integer.parseInt(diastolicEditText.getText().toString());
+
         pulse = Integer.parseInt(pulseEditText.getText().toString());
+
         dateTime = dateString + " at " + timeString;
         String SQLStatement = String.format("INSERT INTO measurements VALUES(%s, %s, %s, '%s');", systolic, diastolic, pulse, dateTime);
         Log.i("SQL Statement is", SQLStatement);
         myDataBase.execSQL(SQLStatement);
-
-
-
 
 
         finish();

@@ -6,7 +6,7 @@ public class PressureMeasurement {
     private int pulse;
     private String dateTime;
 
-    public PressureMeasurement(int diastolic, int systolic, int pulse, String dateTime) {
+    public PressureMeasurement(int systolic, int diastolic, int pulse, String dateTime) {
         this.diastolic = diastolic;
         this.systolic = systolic;
         this.pulse = pulse;
