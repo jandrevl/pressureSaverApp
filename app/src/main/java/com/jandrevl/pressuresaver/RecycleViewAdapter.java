@@ -40,7 +40,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         } else if(measurements.get(position).getSystolic() >=120 &&
                 measurements.get(position).getSystolic() <= 129) {
             holder.systolic.setBackgroundColor(Color.YELLOW);
-        } else if(measurements.get(position).getSystolic() > 130 &&
+        } else if(measurements.get(position).getSystolic() >= 130 &&
                 measurements.get(position).getSystolic() <= 139) {
             holder.systolic.setBackgroundColor(Color.rgb(255, 193,7));
         } else if(measurements.get(position).getSystolic() >= 140 &&

@@ -41,8 +41,8 @@ public class MeasurementsHistoryActivity extends AppCompatActivity {
 
     private void fillMeasurementsList() {
         Cursor resultSet = myDataBase.rawQuery("SELECT * FROM measurements", null);
-        resultSet.moveToFirst();
-        while(!resultSet.isAfterLast()) {
+        resultSet.moveToLast();
+        while(!resultSet.isBeforeFirst()) {
             PressureMeasurement pressureMeasurement = new PressureMeasurement(
                     resultSet.getInt(0),
                     resultSet.getInt(1),
@@ -50,7 +50,7 @@ public class MeasurementsHistoryActivity extends AppCompatActivity {
                     resultSet.getString(3)
             );
             measurements.add(pressureMeasurement);
-            resultSet.moveToNext();
+            resultSet.moveToPrevious();
         }
 
     }

@@ -19,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
         SQLiteDatabase myDataBase = openOrCreateDatabase("pressureSaverDataBase", MODE_PRIVATE, null);
         myDataBase.execSQL("CREATE TABLE IF NOT EXISTS measurements(systolic INT, diastolic INT, pulse INT, date VARCHAR);");
         Cursor resultSet = myDataBase.rawQuery("SELECT * FROM measurements", null);
-        resultSet.moveToFirst();
-        int systole = resultSet.getInt(0);
-        int diastole = resultSet.getInt(1);
-        String dateTime = resultSet.getString(3);
-        Log.i("getting data from SQL", "Systole: " + systole + ", Diastole: " + diastole + ", Date and Time: " + dateTime);
+//        resultSet.moveToFirst();
+//        int systole = resultSet.getInt(0);
+//        int diastole = resultSet.getInt(1);
+//        String dateTime = resultSet.getString(3);
+//        Log.i("getting data from SQL", "Systole: " + systole + ", Diastole: " + diastole + ", Date and Time: " + dateTime);
     }
 
     public void registerMeasurement(View view) {
@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToPreviousMeasurements(View view) {
         Intent intent = new Intent(getApplicationContext(), MeasurementsHistoryActivity.class);
+        startActivity(intent);
+    }
+
+    public void goToInfo(View view) {
+        Intent intent = new Intent(this, InfoActivity.class);
         startActivity(intent);
     }
 }
