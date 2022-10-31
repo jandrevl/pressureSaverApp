@@ -15,7 +15,8 @@
         <!-- Customize your theme here. -->
 <!--        <item name="background">#DC8A8A</item>-->
 <!--        <item name="android:background">#DDBFBF</item>-->
-        <item name="colorOnBackground">#FFBFBF</item>
+<!--        <item name="colorOnBackground">#FFBFBF</item>-->
+<!--        <item name="android:windowBackground">#FFBFBF</item>-->
 
     </style>
 </resources>
